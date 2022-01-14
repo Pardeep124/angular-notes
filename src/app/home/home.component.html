@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="center">
+        <div class="inline">
+            <input [value]="body.description" type="text" autocomplete="off" name="text" placeholder="Enter Text to Add" (keyup)="handleChange($event)" />
+            <button class="btn" (click)="handleSubmit()">Add</button>
+        </div>
+        <ul class="list">
+            <li class="listItem" *ngFor="let post of parentMessage; let i = index">
+                <p>{{ i + 1 }} - {{ post.description }}</p>
+                <button class="btn delete" mat-icon-button (click)="handleDelete(post._id)">
+          <mat-icon color="accent">delete_forever</mat-icon>
+        </button>
+            </li>
+        </ul>
+    </div>
+</div>
