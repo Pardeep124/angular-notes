@@ -15,7 +15,8 @@ import { ContactComponent } from '../contact/contact.component';
 })
 export class HomeComponent implements AfterViewInit {
   url = 'https://basic-note.herokuapp.com/';
-  posts = '';
+  id = '';
+
   parentMessage: any[] = [];
   body: { name: string; title: string; description: string } = {
     name: '',
@@ -26,16 +27,15 @@ export class HomeComponent implements AfterViewInit {
   @ViewChild(ContactComponent) child: any;
 
   constructor(private changeDetectorRef: ChangeDetectorRef) {
-    this.fetchPosts();
+    this.fetchid();
   }
 
-  async fetchPosts() {
+  async fetchid() {
     await fetch(this.url)
       .then((response) => response.json()) // second step
       .then((data) => {
         this.parentMessage = data;
         this.body.description = '';
-        console.log(data);
       })
       .catch((e) => console.log(e));
   }
@@ -43,23 +43,39 @@ export class HomeComponent implements AfterViewInit {
   handleChange(event: any) {
     this.body = {
       name: 'Pardeep',
-      title: 'Posts',
+      title: 'id',
       description: event.target.value,
     };
   }
 
   async handleSubmit() {
-    await fetch(this.url, {
-      method: 'post',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(this.body),
-    })
-      .then((response) => console.log('Post Succesffuly'))
-      .catch((e) => console.log(e));
-    this.fetchPosts();
+    if (!this.id) {
+      console.log(this.id);
+      await fetch(this.url, {
+        method: 'post',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(this.body),
+      })
+        .then((response) => console.log('Note Posted Succesffuly'))
+        .catch((e) => console.log(e));
+    } else {
+      console.log('Update');
+      await fetch(this.url + this.id, {
+        method: 'PATCH',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(this.body),
+      })
+        .then((response) => console.log('Note Updated Succesffuly'))
+        .catch((e) => console.log(e));
+      this.id = '';
+    }
+    this.fetchid();
   }
 
   async handleDelete(id: string) {
@@ -70,9 +86,14 @@ export class HomeComponent implements AfterViewInit {
         'Content-Type': 'application/json',
       },
     })
-      .then((response) => console.log('Post deleted succesffuly'))
+      .then((response) => console.log('Note deleted succesffuly'))
       .catch((e) => console.log(e));
-    this.fetchPosts();
+    this.fetchid();
+  }
+
+  async handleUpdate(post: any) {
+    this.id = post._id;
+    this.body.description = post.description;
   }
 
   ngAfterViewInit() {

@@ -38,8 +38,18 @@
     .delete {
         background-color: red;
         border-radius: 50%;
-        width: 25px;
-        height: 25px;
+        width: 30px;
+        height: 30px;
+        position: relative;
+    }
+    .icons {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .marginl {
+        margin-left: 10px;
     }
 }
 
@@ -56,4 +66,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    p {
+        width: 80%;
+    }
 }

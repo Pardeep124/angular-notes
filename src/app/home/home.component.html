@@ -7,9 +7,15 @@
         <ul class="list">
             <li class="listItem" *ngFor="let post of parentMessage; let i = index">
                 <p>{{ i + 1 }} - {{ post.description }}</p>
-                <button class="btn delete" mat-icon-button (click)="handleDelete(post._id)">
-          <mat-icon color="accent">delete_forever</mat-icon>
-        </button>
+                <div>
+                    <button class="btn delete" mat-icon-button (click)="handleDelete(post._id)">
+            <mat-icon class="icons">delete_forever</mat-icon>
+          </button>
+
+                    <button class="btn delete marginl" mat-icon-button (click)="handleUpdate(post)">
+            <mat-icon class="icons">edit</mat-icon>
+          </button>
+                </div>
             </li>
         </ul>
     </div>
