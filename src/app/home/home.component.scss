@@ -1,11 +1,13 @@
 .container {
     padding: 30px 40px;
     .center {
-        width: 568px;
+        max-width: 568px;
+        width: 100%;
         margin: 0 auto;
     }
     input {
-        width: 568px;
+        max-width: 568px;
+        width: 100%;
         border: none;
         border-bottom: 1px solid orange;
         height: 50px;
