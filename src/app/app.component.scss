@@ -1,9 +1,15 @@
 .parent {
-    background-color: orange;
-    display: flex;
-    padding: 20px 50px;
-    justify-content: space-around;
-    align-items: center;
+    background: linear-gradient(#ffab23, #ffec64);
+    padding: 20px 40px;
+    display: grid;
+    place-items: center;
+    .child {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 768px;
+        width: 100%;
+    }
 }
 
 .logo {
@@ -24,5 +30,8 @@
         .active {
             color: blue;
         }
+    }
+    li:nth-child(3) {
+        padding-right: 0;
     }
 }
