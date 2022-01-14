@@ -1,5 +1,8 @@
 .container {
     padding: 30px 40px;
+    @media screen and (max-width: 568px) {
+        padding: 30px 15px;
+    }
     .center {
         max-width: 768px;
         width: 100%;
@@ -70,5 +73,10 @@
     align-items: center;
     p {
         width: 80%;
+    }
+    @media screen and (max-width: 568px) {
+        p {
+            width: 70%;
+        }
     }
 }

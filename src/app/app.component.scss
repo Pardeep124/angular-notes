@@ -10,6 +10,9 @@
         max-width: 768px;
         width: 100%;
     }
+    @media screen and (max-width: 568px) {
+        padding: 20px 15px;
+    }
 }
 
 .logo {
@@ -29,6 +32,9 @@
         }
         .active {
             color: blue;
+        }
+        @media screen and (max-width: 568px) {
+            padding: 0 10px;
         }
     }
     li:nth-child(3) {
